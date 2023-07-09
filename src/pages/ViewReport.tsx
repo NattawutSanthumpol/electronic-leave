@@ -45,50 +45,66 @@ const ViewReport = () => {
     >
       <Container maxWidth="xl">
         <Grid container spacing={3}>
-          <Grid item xs={12} sx={{ height: "90vh" }}>
-            <PDFViewer
-              showToolbar={false}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-            >
-              {leaveItem.type === "sickLeave" ? (
-                <TemplateSickLeave leave={leaveItem} fileNamePDF={fileNamePDF} />
-              ) : (
-                <TemplateOutOfPlace leave={leaveItem} fileNamePDF={fileNamePDF} />
-              )}
-            </PDFViewer>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            justifyContent="center"
-            alignItems="center"
-            display="flex"
-          >
-            <Button variant="contained" color="primary">
-              <PDFDownloadLink
-                document={
-                  leaveItem.type === "sickLeave" ? (
-                    <TemplateSickLeave leave={leaveItem} fileNamePDF={fileNamePDF} />
+          {leaveItem && (
+            <>
+              <Grid item xs={12} sx={{ height: "90vh" }}>
+                <PDFViewer
+                  showToolbar={false}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  {leaveItem.type === "sickLeave" ? (
+                    <TemplateSickLeave
+                      leave={leaveItem}
+                      fileNamePDF={fileNamePDF}
+                    />
                   ) : (
-                    <TemplateOutOfPlace leave={leaveItem} fileNamePDF={fileNamePDF} />
-                  )
-                }
-                fileName={fileNamePDF}
-                style={{
-                  textDecoration: "none",
-                  color: "#FFFFFF",
-                  fontSize: "18px",
-                }}
+                    <TemplateOutOfPlace
+                      leave={leaveItem}
+                      fileNamePDF={fileNamePDF}
+                    />
+                  )}
+                </PDFViewer>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                justifyContent="center"
+                alignItems="center"
+                display="flex"
               >
-                {({ loading }) =>
-                  loading ? "Loading document..." : "Download PDF"
-                }
-              </PDFDownloadLink>
-            </Button>
-          </Grid>
+                <Button variant="contained" color="primary">
+                  <PDFDownloadLink
+                    document={
+                      leaveItem.type === "sickLeave" ? (
+                        <TemplateSickLeave
+                          leave={leaveItem}
+                          fileNamePDF={fileNamePDF}
+                        />
+                      ) : (
+                        <TemplateOutOfPlace
+                          leave={leaveItem}
+                          fileNamePDF={fileNamePDF}
+                        />
+                      )
+                    }
+                    fileName={fileNamePDF}
+                    style={{
+                      textDecoration: "none",
+                      color: "#FFFFFF",
+                      fontSize: "18px",
+                    }}
+                  >
+                    {({ loading }) =>
+                      loading ? "Loading document..." : "Download PDF"
+                    }
+                  </PDFDownloadLink>
+                </Button>
+              </Grid>
+            </>
+          )}
         </Grid>
       </Container>
     </Box>

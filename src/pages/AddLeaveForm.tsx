@@ -39,7 +39,9 @@ import { Timestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const AddLeaveForm = () => {
-  const [teacher, setTeacher] = useState<Array<Teacher>>([]); //await teacherService.getAll()
+  // const [teacher, setTeacher] = useState<Array<Teacher>>(MockData);
+  // const [teacher, setTeacher] = useState<Array<Teacher>>([]); //await teacherService.getAll()
+  const teacher = MockData
   const [codeTeacher, setCodeTeacher] = useState<number>(0);
   const [codeTeacherExchange, setCodeTeacherExchange] = useState<number>(0);
   const [position, setPosition] = useState<string>("");
@@ -52,9 +54,9 @@ const AddLeaveForm = () => {
   const [timeEnd, setTimeEnd] = useState<Date>(new Date());
   const [msg, setMsg] = useState("");
   const [leave, setLeave] = useState<Leave>();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  setTeacher(MockData)
+  // setTeacher(MockData);
   // const getTeacherAll = async () => {
   //   const teacherList = await teacherService.getAll();
   //   if (teacherList) {
@@ -167,7 +169,9 @@ const AddLeaveForm = () => {
   };
   localStorage.setItem("leave", JSON.stringify(leave));
 
-  useEffect(()=>{leave && navigate("/report")},[leave, navigate])
+  useEffect(() => {
+    leave && navigate("/report");
+  }, [leave, navigate]);
   return (
     <Container>
       {/* <div>
