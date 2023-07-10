@@ -1,4 +1,11 @@
-import { PDFViewer, PDFDownloadLink, Font } from "@react-pdf/renderer";
+import {
+  PDFViewer,
+  PDFDownloadLink,
+  Font,
+  BlobProvider,
+  Document,
+  Page,
+} from "@react-pdf/renderer";
 import { TemplateOutOfPlace, TemplateSickLeave } from "../components/ReportPDF";
 import { Box, Button, Container, Grid } from "@mui/material";
 
@@ -25,7 +32,7 @@ const ViewReport = () => {
         formatDate(leaveItem.createDate.seconds) +
         ".pdf";
 
-  function formatDate(date: any) {
+  function formatDate(date: number) {
     const d = new Date(date * 1000);
     let month = "" + (d.getMonth() + 1);
     let day = "" + d.getDate();
@@ -48,6 +55,24 @@ const ViewReport = () => {
           {leaveItem && (
             <>
               <Grid item xs={12} sx={{ height: "90vh" }}>
+                {/* <BlobProvider
+                  document={
+                    <TemplateSickLeave
+                      leave={leaveItem}
+                      fileNamePDF={fileNamePDF}
+                    />
+                  }
+                >
+                  {({ blob, url, loading }) => {
+                    return loading && (
+                      <TemplateSickLeave
+                        leave={leaveItem}
+                        fileNamePDF={fileNamePDF}
+                      />
+                    )
+                  }}
+                </BlobProvider> */}
+
                 <PDFViewer
                   showToolbar={false}
                   style={{
@@ -108,33 +133,6 @@ const ViewReport = () => {
         </Grid>
       </Container>
     </Box>
-    // <div
-    //   style={{
-    //     width: "100%",
-    //     height: "100vh",
-    //     display: "flex",
-    //   }}
-    // >
-    //   <div style={{ flexGrow: 1 }}>
-    //     <PDFViewer
-    //       showToolbar={false}
-    //       style={{
-    //         width: "90%",
-    //         height: "90%",
-    //       }}
-    //     >
-    //       <TemplateOutOfPlace />
-    //     </PDFViewer>
-    // <PDFDownloadLink
-    //   document={<TemplateOutOfPlace />}
-    //   fileName="_ใบลาขอออกนอกสถานที่.pdf"
-    // >
-    //   {({ loading }) =>
-    //     loading ? "Loading document..." : "Download PDF now!"
-    //   }
-    // </PDFDownloadLink>
-    //   </div>
-    // </div>
   );
 };
 

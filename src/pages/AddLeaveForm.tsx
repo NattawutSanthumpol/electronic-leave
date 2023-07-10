@@ -41,7 +41,7 @@ import { useNavigate } from "react-router-dom";
 const AddLeaveForm = () => {
   // const [teacher, setTeacher] = useState<Array<Teacher>>(MockData);
   // const [teacher, setTeacher] = useState<Array<Teacher>>([]); //await teacherService.getAll()
-  const teacher = MockData
+  const teacher = MockData;
   const [codeTeacher, setCodeTeacher] = useState<number>(0);
   const [codeTeacherExchange, setCodeTeacherExchange] = useState<number>(0);
   const [position, setPosition] = useState<string>("");
@@ -545,19 +545,19 @@ const AddLeaveForm = () => {
                   />
                 </FormControl>
                 <Box sx={{ textAlign: "center", alignItems: "center" }}>
-                  <Button
+                  <Button 
                     variant="contained"
-                    size="large"
                     onClick={handleSubmit}
                     sx={{
-                      width: "400px",
-                      height: "50px",
-                      fontSize: "1.7rem",
+                      width:"100%",
+                      maxWidth:"400px",
+                      fontSize: "1.5rem",
                       borderRadius: "0.7rem",
                     }}
                   >
                     บันทึก
                   </Button>
+
                 </Box>
               </Box>
             </CardContent>
