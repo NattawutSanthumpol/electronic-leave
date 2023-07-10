@@ -2,9 +2,6 @@ import {
   PDFViewer,
   PDFDownloadLink,
   Font,
-  BlobProvider,
-  Document,
-  Page,
 } from "@react-pdf/renderer";
 import { TemplateOutOfPlace, TemplateSickLeave } from "../components/ReportPDF";
 import { Box, Button, Container, Grid } from "@mui/material";
